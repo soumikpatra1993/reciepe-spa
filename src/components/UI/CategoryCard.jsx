@@ -4,10 +4,13 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import CardActions from '@material-ui/core/CardActions';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import IconButton from '@material-ui/core/IconButton';
 
-const CategoryCard = ({category}) => {
+const CategoryCard = ({category, handleCategory, color}) => {
 
-  
+
     const useStyles = makeStyles({
         root: {
          width: 200,
@@ -35,7 +38,6 @@ const CategoryCard = ({category}) => {
         },
       });
       const classes = useStyles();
-    console.log(category)
     return (
         <Card 
         className={classes.root}>
@@ -51,6 +53,12 @@ const CategoryCard = ({category}) => {
         <Typography className={classes.pos} color="textSecondary">
         </Typography>
       </CardContent>
+      <CardActions disableSpacing>
+        <IconButton color= {color}aria-label="add to favorites"
+            onClick={() => handleCategory (category)}>
+          <FavoriteIcon />
+        </IconButton>
+        </CardActions>
     </Card>
     )
 }
