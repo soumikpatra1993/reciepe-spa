@@ -13,5 +13,8 @@ export function fetchCategories() {
         );
     };
    }
+   export function addToFav(text ) {
+     return {type: ActionTypes.ADD_FAV, payload : text }
+  }
 
  
