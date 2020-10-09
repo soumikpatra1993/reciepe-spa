@@ -15,7 +15,6 @@ export function fetchCategories() {
     };
    }
    export function fetchCateGoryDetail(category) {
-     debugger
     return dispatch => {
         axios.get (`${CategoryDetailUrl}${category}`).then (response =>
           dispatch ({
