@@ -1,4 +1,4 @@
-import React  from 'react'
+import React,{useState , useEffect}  from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -7,9 +7,17 @@ import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import IconButton from '@material-ui/core/IconButton';
+import {Link} from 'react-router-dom'
 
-const CategoryCard = ({category, handleCategory, color}) => {
+const CategoryCard = ({category, handleCategory ,chosenCategory}) => {
 
+    const [colored,setColor] =  useState('default')
+
+    useEffect(() => {
+      if(category.color) {
+        setColor(category.color)
+      }
+    },[category , category.color])
 
     const useStyles = makeStyles({
         root: {
@@ -39,6 +47,7 @@ const CategoryCard = ({category, handleCategory, color}) => {
       });
       const classes = useStyles();
     return (
+      <Link to = {`/${category.strCategory}`}>
         <Card 
         className={classes.root}>
              <CardMedia
@@ -54,12 +63,16 @@ const CategoryCard = ({category, handleCategory, color}) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton color= {color}aria-label="add to favorites"
-            onClick={() => handleCategory (category)}>
+        <IconButton color= {colored}aria-label="add to favorites"
+            onClick={() => { 
+              colored === 'default' ? setColor('secondary'): setColor('secondary')
+              let color =  colored === 'default' ? 'secondary' :'default'
+              handleCategory(category , color)}}>
           <FavoriteIcon />
         </IconButton>
         </CardActions>
     </Card>
+    </Link>
     )
 }
 
