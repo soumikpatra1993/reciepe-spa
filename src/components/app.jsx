@@ -1,15 +1,26 @@
 import React, { Component } from 'react';
 import Layout from './HOC/Layout';
 import { connect } from 'react-redux'
-import { fetchCategories } from '../actions';
+import { fetchCategories ,selectedCategories} from '../actions';
 import CategoryList from './containers/CategoryList';
 
+
 class App extends Component {
+
   
   componentDidMount () {
-
-    fetchCategories()
+if (this.props.categories.length === 0){
+  fetchCategories();
+} else {
+  selectedCategories(this.props.categories)
+}
   }
+shouldComponentUpdate(nextProps) {
+  if(nextProps.categories !== this.props.categories) {
+  return true
+  }
+  return false
+}
   render() {
     const {categories} = this.props;
     return (
@@ -25,7 +36,14 @@ const mapStateToProps = (state) => {
     categories : state.categoriesReducer.categories || []
   }
 }
-const mapDispatchToProps = (dispatch) => dispatch(fetchCategories())
+const mapDispatchToProps = (dispatch) =>{
+  
+return dispatch => {
+  dispatch(fetchCategories())
+  
+  dispatch(selectedCategories())
+}
+}
   
 
 export default connect(mapStateToProps , mapDispatchToProps) (App)

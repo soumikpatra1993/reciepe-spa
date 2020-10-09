@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Layout from './HOC/Layout'
+import Layout from '../HOC/Layout'
 
 class Search extends Component {
     render() {

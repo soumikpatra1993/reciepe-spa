@@ -2,6 +2,7 @@ import * as ActionTypes from './actionTypes';
 import axios from 'axios'
 
 const CategoriesUrl = 'https://www.themealdb.com/api/json/v1/1/categories.php';
+const CategoryDetailUrl = 'https://www.themealdb.com/api/json/v1/1/filter.php?c='
 
 export function fetchCategories() {
     return dispatch => {
@@ -13,8 +14,30 @@ export function fetchCategories() {
         );
     };
    }
-   export function addToFav(text ) {
-     return {type: ActionTypes.ADD_FAV, payload : text }
+   export function fetchCateGoryDetail(category) {
+     debugger
+    return dispatch => {
+        axios.get (`${CategoryDetailUrl}${category}`).then (response =>
+          dispatch ({
+            type: ActionTypes.CATEGORY_DETAIL,
+            payload: response.data.meals,
+          })
+        );
+    };
+   }
+   export function addToFav(category ) {
+     return {type: ActionTypes.ADD_FAV, payload : {...category , color : 'secondary'} }
   }
 
+  export function deleteSelectedCategory (category) {
+    return {type : ActionTypes.DELETE_CATEGORY, payload : category}
+  }
+  export function selectedCategory (category) {
+    return {type : ActionTypes.SELECTED_CATEGORY, payload : category}
+  }
+  export function selectedCategories () {
+    
+    return {type : ActionTypes.SELECTED_CATEGORIES}
+  }
+  
  
