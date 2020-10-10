@@ -6,7 +6,6 @@ import {fetchCateGoryDetail} from '../../actions'
 class CategoryDetail extends Component {
     componentDidMount () {
        const {match , dispatch} =  this.props;
-       debugger
       dispatch(fetchCateGoryDetail(match.params.category))
     }
     render() {
