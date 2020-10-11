@@ -27,7 +27,6 @@ shouldComponentUpdate(nextProps) {
     return (
       <Layout>
         <CategoryList categories = {categories}/>
-    <Search{...this.props}/>
       </Layout>
       
     );
