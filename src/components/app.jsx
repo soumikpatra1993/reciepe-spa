@@ -3,6 +3,7 @@ import Layout from './HOC/Layout';
 import { connect } from 'react-redux'
 import { fetchCategories ,selectedCategories} from '../actions';
 import CategoryList from './containers/CategoryList';
+import Search from './containers/Search'
 
 
 class App extends Component {
@@ -26,6 +27,7 @@ shouldComponentUpdate(nextProps) {
     return (
       <Layout>
         <CategoryList categories = {categories}/>
+    <Search{...this.props}/>
       </Layout>
       
     );
