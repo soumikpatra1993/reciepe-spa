@@ -1,13 +1,17 @@
-import React, { Component } from 'react'
-import Layout from '../HOC/Layout'
+import React, { useState, useEffect } from 'react'
+import Layout from '../HOC/Layout';
+const Search = () => {
 
-class Search extends Component {
-    render() {
-        return (
-         <Layout>
-             
-         </Layout>
-        )
-    }
+    const [search, setSearch] = useState('')
+    useEffect(() => {
+
+    }, [search])
+    return (
+        <Layout>
+            <div className="search-bar">
+                <input value={search} onChange={(e) => setSearch(e.target.value)} />
+            </div>
+        </Layout>
+    )
 }
 export default Search
