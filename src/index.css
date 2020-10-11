@@ -14,13 +14,13 @@ body, html {
 }
 .search-bar {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 100%;
    padding-top: 3em;
 }
 .search-bar input  {
-    width: 400px;
-    height: 40px;
+    width: 500px;
+    height: 20px;
     border: none;
     border-bottom: 1px solid grey;
     font-size: 16px;

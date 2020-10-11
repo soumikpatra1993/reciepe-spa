@@ -2,7 +2,8 @@ import * as ActionTypes from './actionTypes';
 import axios from 'axios'
 
 const CategoriesUrl = 'https://www.themealdb.com/api/json/v1/1/categories.php';
-const CategoryDetailUrl = 'https://www.themealdb.com/api/json/v1/1/filter.php?c='
+const CategoryDetailUrl = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=';
+const SearchUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 
 export function fetchCategories() {
     return dispatch => {
@@ -23,6 +24,16 @@ export function fetchCategories() {
           })
         );
     };
+   }
+   export function fetchSearchResult (search) {
+    return dispatch => {
+      axios.get (`${SearchUrl}${search}`).then (response =>
+        dispatch ({
+          type: ActionTypes.SEARCH_RESULT,
+          payload: response.data.meals,
+        })
+      );
+  };
    }
    export function addToFav(category ) {
      return {type: ActionTypes.ADD_FAV, payload : {...category , color : 'secondary'} }
